@@ -49,7 +49,7 @@ func md5WalkFunc(cb func(string, string)) filepath.WalkFunc {
 		}
 
 		// don't sum directories
-		if info.IsDir() {
+		if info.IsDir() || info.Mode()&os.ModeSymlink == os.ModeSymlink {
 			return nil
 		}
 
